@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d5963">
+  <title>ORAVENA Pro | نظام العيادة التجريبي</title>
+  <link rel="icon" href="assets/oravena-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <aside class="side" id="side">
+    <a class="side-brand" href="index.html"><img src="assets/oravena-logo.svg" alt="ORAVENA Dental"></a>
+    <div class="mode-tag">نسخة اختبار محلية</div>
+    <nav id="sideNav" aria-label="أقسام النظام"></nav>
+    <div class="side-foot"><button id="exportButton" type="button">تصدير نسخة احتياطية</button><a href="index.html">العودة للموقع</a></div>
+  </aside>
+  <header class="sys-top">
+    <button class="hamburger" id="sideToggle" type="button" aria-label="فتح القائمة">☰</button>
+    <div class="connection" id="connection"><i></i><span>متصل</span></div>
+    <div class="top-actions">
+      <label class="role-picker"><span>اختبار كـ</span><select id="roleSelect"><option value="admin">المدير الرئيسي</option><option value="doctor">الدكتور</option><option value="employee">الموظف</option><option value="patient">المريض</option></select></label>
+      <button id="emergencyButton" class="emergency" type="button">الطوارئ</button>
+      <button id="notificationsButton" class="icon-btn" type="button" aria-label="الإشعارات">🔔<b id="notificationCount">0</b></button>
+    </div>
+  </header>
+  <main class="workspace">
+    <div class="page-head">
+      <div><p id="pageKicker">ORAVENA PRO</p><h1 id="pageTitle">لوحة المتابعة</h1></div>
+      <div class="page-tools"><label class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="ابحث داخل القسم"></label><button id="primaryAction" class="primary" type="button">إضافة جديد</button></div>
+    </div>
+    <section id="content" class="content" aria-live="polite"></section>
+  </main>
+
+  <dialog id="editorDialog" class="dialog"><form id="editorForm"><button class="dialog-close" type="button" data-close="editorDialog">×</button><p class="dialog-kicker">ORAVENA</p><h2 id="editorTitle">إضافة سجل</h2><div id="editorFields" class="form-grid"></div><div class="dialog-actions"><button class="secondary" type="button" data-close="editorDialog">إلغاء</button><button class="primary" type="submit">حفظ</button></div></form></dialog>
+  <dialog id="toothDialog" class="dialog"><form id="toothForm"><button class="dialog-close" type="button" data-close="toothDialog">×</button><p class="dialog-kicker">خريطة الأسنان</p><h2>السن رقم <span id="toothNumber"></span></h2><input id="toothId" type="hidden"><label>الحالة<select id="toothStatus"><option value="healthy">سليم</option><option value="caries">تسوس</option><option value="treated">معالج</option><option value="missing">مفقود</option><option value="implant">زراعة</option><option value="planned">إجراء مخطط</option></select></label><label>الملاحظة<textarea id="toothNote" rows="4"></textarea></label><div class="dialog-actions"><button class="secondary" type="button" data-close="toothDialog">إلغاء</button><button class="primary" type="submit">حفظ السن</button></div></form></dialog>
+  <dialog id="notificationsDialog" class="dialog small"><div class="dialog-body"><button class="dialog-close" type="button" data-close="notificationsDialog">×</button><p class="dialog-kicker">مركز التنبيهات</p><h2>الإشعارات</h2><div id="notificationsList"></div><button class="secondary full" id="readAllButton" type="button">تحديد الكل كمقروء</button></div></dialog>
+  <dialog id="emergencyDialog" class="dialog small"><div class="dialog-body"><button class="dialog-close" type="button" data-close="emergencyDialog">×</button><p class="dialog-kicker danger">وصول طبي طارئ</p><h2>بطاقة الطوارئ</h2><div id="emergencyContent"></div><button class="primary full" id="recordEmergencyButton" type="button">تسجيل فتح البطاقة</button></div></dialog>
+  <input id="importInput" type="file" accept="application/json" hidden>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
