@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="800" viewBox="0 0 2400 800" role="img" aria-labelledby="title desc">
+  <title id="title">ORAVENA Dental horizontal logo</title>
+  <desc id="desc">ORAVENA wordmark with an abstract upper and lower jaw forming the letter O around a tooth.</desc>
+  <defs>
+    <linearGradient id="tooth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d7f4f1"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(120 118) rotate(-6 300 280)">
+    <path d="M100 275 C122 132 223 76 340 80 C456 84 551 143 570 275" fill="none" stroke="#0d5963" stroke-width="44" stroke-linecap="round"/>
+    <path d="M100 325 C122 468 223 524 340 520 C456 516 551 457 570 325" fill="none" stroke="#18b7ad" stroke-width="44" stroke-linecap="round"/>
+    <path d="M285 256 Q340 226 395 256 L420 318 L389 443 L341 391 L291 443 L260 318 Z" fill="url(#tooth)" stroke="#bfe8e5" stroke-width="5"/>
+  </g>
+  <g transform="translate(820 0)">
+    <text x="0" y="398" fill="#0d5963" font-family="DejaVu Sans, Arial, sans-serif" font-size="246" font-weight="600" letter-spacing="34">ORAVENA</text>
+    <text x="14" y="515" fill="#18b7ad" font-family="DejaVu Sans, Arial, sans-serif" font-size="62" font-weight="600" letter-spacing="27">DENTAL</text>
+  </g>
+</svg>

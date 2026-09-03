@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">ORAVENA application icon</title>
+  <desc id="desc">A square medical app icon featuring ORAVENA's abstract jaw and tooth symbol.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d5963"/>
+      <stop offset="1" stop-color="#17343d"/>
+    </linearGradient>
+    <linearGradient id="tooth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d7f4f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="210" fill="url(#background)"/>
+  <circle cx="836" cy="178" r="242" fill="#18b7ad" opacity="0.10"/>
+  <rect x="194" y="214" width="636" height="636" rx="158" fill="#062f33" opacity="0.24"/>
+  <rect x="180" y="180" width="664" height="664" rx="166" fill="#ffffff"/>
+  <g transform="translate(252 244) rotate(-6 260 260)">
+    <path d="M70 250 C89 126 176 77 278 80 C378 84 461 134 478 250" fill="none" stroke="#0d5963" stroke-width="46" stroke-linecap="round"/>
+    <path d="M70 294 C89 418 176 467 278 464 C378 460 461 410 478 294" fill="none" stroke="#18b7ad" stroke-width="46" stroke-linecap="round"/>
+    <path d="M229 230 Q278 202 327 230 L350 287 L322 399 L279 353 L234 399 L206 287 Z" fill="url(#tooth)" stroke="#bfe8e5" stroke-width="5"/>
+  </g>
+</svg>
