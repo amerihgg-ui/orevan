@@ -9,22 +9,24 @@
   <link rel="icon" href="assets/oravena-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="story.css">
+  <link rel="stylesheet" href="cinematic.css">
 </head>
-<body>
+<body class="cinematic-home">
   <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
   <header class="topbar" id="topbar">
     <a class="brand" href="#home" aria-label="ORAVENA Dental - الرئيسية">
       <img src="assets/oravena-logo.svg" alt="ORAVENA Dental">
     </a>
     <nav class="desktop-nav" aria-label="التنقل الرئيسي">
-      <button class="nav-entry" data-open="loginDialog" type="button" data-i18n="navPatient">المريض</button>
-      <button class="nav-entry" data-open="staffDialog" data-role="doctor" type="button" data-i18n="navDoctor">الدكتور</button>
-      <button class="nav-entry" data-open="staffDialog" data-role="employee" type="button" data-i18n="navEmployee">الموظف</button>
-      <a href="about.html" data-i18n="navAbout">من نحن</a>
+      <a href="index.html" data-i18n="navHome">الرئيسية</a>
+      <a href="about.html" data-i18n="navStory">قصتنا</a>
+      <button class="nav-entry" data-open="loginDialog" type="button" data-i18n="navAccount">حسابي</button>
     </nav>
     <div class="header-actions">
       <button class="language-button" id="languageButton" type="button" aria-label="تغيير اللغة">AR</button>
+      <a class="button button-glass desktop-only staff-access" id="staffAccess" href="system.html" hidden>لوحة العمل</a>
       <button class="button button-primary desktop-only" data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button>
+      <button class="staff-login-link desktop-only" data-open="staffDialog" data-role="employee" type="button">دخول الفريق</button>
       <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="فتح القائمة">
         <span></span><span></span><span></span>
       </button>
@@ -32,10 +34,11 @@
   </header>
 
   <nav class="mobile-nav" id="mobileNav" aria-label="التنقل على الهاتف" hidden>
-    <button class="nav-entry" data-open="loginDialog" type="button" data-i18n="navPatient">المريض</button>
-    <button class="nav-entry" data-open="staffDialog" data-role="doctor" type="button" data-i18n="navDoctor">الدكتور</button>
-    <button class="nav-entry" data-open="staffDialog" data-role="employee" type="button" data-i18n="navEmployee">الموظف</button>
-    <a href="about.html" data-i18n="navAbout">من نحن</a>
+    <a href="index.html" data-i18n="navHome">الرئيسية</a>
+    <a href="about.html" data-i18n="navStory">قصتنا</a>
+    <button class="nav-entry" data-open="loginDialog" type="button" data-i18n="navAccount">حسابي</button>
+    <a class="button button-glass staff-access" id="mobileStaffAccess" href="system.html" hidden>لوحة العمل</a>
+    <button class="nav-entry" data-open="staffDialog" data-role="employee" type="button">دخول الفريق</button>
     <button class="button button-primary" data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button>
   </nav>
 
@@ -176,8 +179,9 @@
       <p class="modal-copy" data-i18n="bookingCopy">أرسل البيانات الأساسية وسيتواصل معك الاستقبال لتأكيد الموعد.</p>
       <label><span data-i18n="fullName">الاسم الكامل</span><input name="name" autocomplete="name" required></label>
       <label><span data-i18n="phone">رقم الهاتف</span><input name="phone" type="tel" autocomplete="tel" required></label>
-      <label><span data-i18n="service">الخدمة</span><select name="service" required><option value="" data-i18n="selectService">اختر الخدمة</option><option data-i18n="generalExam">فحص عام</option><option data-i18n="urgentCare">حالة عاجلة</option><option data-i18n="orthodontics">تقويم</option><option data-i18n="implant">زراعة</option></select></label>
-      <label><span data-i18n="preferredDate">اليوم المفضل</span><input name="date" type="date" required></label>
+      <label><span data-i18n="nationalId">رقم الهوية (اختياري)</span><input name="nationalId" inputmode="numeric"></label>
+      <label><span data-i18n="age">السن</span><input name="age" type="number" min="0" max="120" required></label>
+      <label><span data-i18n="service">الخدمة المطلوبة</span><textarea name="service" rows="3" placeholder="اكتب الخدمة أو سبب الزيارة" required></textarea></label>
       <button class="button button-primary full" type="submit" data-i18n="sendRequest">إرسال الطلب</button>
       <p class="form-status" id="bookingStatus" role="status"></p>
     </form>
@@ -211,6 +215,8 @@
     </form>
   </dialog>
 
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
