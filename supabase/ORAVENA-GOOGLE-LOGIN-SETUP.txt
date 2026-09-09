@@ -1,0 +1,24 @@
+ORAVENA — Google sign-in setup
+
+1) Google Auth Platform
+   - Create an OAuth client of type: Web application.
+   - Authorized JavaScript origin:
+     https://oravena-dental.aboughazala.chatgpt.site
+   - Authorized redirect URI:
+     https://ocfgezxvnwpvbynzgfqb.supabase.co/auth/v1/callback
+
+2) Supabase Dashboard
+   - Authentication > Sign In / Providers > Google.
+   - Enable Google and paste the Google Client ID and Client Secret.
+   - Authentication > URL Configuration.
+   - Add this Redirect URL:
+     https://oravena-dental.aboughazala.chatgpt.site/index.html?oauth=google
+
+3) Other production domains
+   - If ORAVENA is also hosted on GitHub Pages or a custom domain, add that
+     exact origin in Google and its exact index.html?oauth=google URL in
+     Supabase Redirect URLs.
+
+Security
+   - The Google Client Secret belongs only in the Supabase provider settings.
+   - Never add the Client Secret or Supabase secret/service-role key to site files.

@@ -31,8 +31,3 @@ body[data-role=patient] .data-table th{background:#eee9df}
 body[data-role=patient] .record-hero{border-radius:4px;background:linear-gradient(130deg,#12383c,#1a5559)}
 body[data-role=patient] .profile-grid>div{border-radius:4px;background:#fffdf9;border-color:#ded8ce}
 @media(max-width:640px){.story-hero h1{font-size:3.6rem}.story-chapter{min-height:auto}.story-hero-copy{width:auto}}
-html[lang="en"] .story-hero h1{font-size:clamp(3.4rem,6.8vw,7rem);line-height:.98}
-html[lang="tr"] .story-hero h1{font-size:clamp(3.15rem,6.2vw,6.5rem);line-height:1}
-html[lang="en"] .chapter-copy h2,html[lang="tr"] .chapter-copy h2{font-size:clamp(2rem,4vw,4.2rem);line-height:1.06}
-html[lang="en"] .story-hero-copy,html[lang="tr"] .story-hero-copy{max-width:940px}
-@media(max-width:640px){html[lang="en"] .story-hero h1{font-size:3rem}html[lang="tr"] .story-hero h1{font-size:2.75rem}}

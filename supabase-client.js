@@ -22,6 +22,40 @@
     localStorage.setItem(ACCESS_KEY,JSON.stringify(access));
     return access;
   }
+  function signInWithGoogle(){
+    if(!configured())throw new Error('SUPABASE_NOT_CONFIGURED');
+    const redirectTo=new URL('index.html?oauth=google',location.href).href;
+    const authorize=new URL(config().url.replace(/\/$/,'')+'/auth/v1/authorize');
+    authorize.searchParams.set('provider','google');
+    authorize.searchParams.set('redirect_to',redirectTo);
+    location.assign(authorize.href);
+  }
+  async function completeOAuth(){
+    const params=new URLSearchParams(location.hash.replace(/^#/,''));
+    const oauthError=params.get('error_description')||params.get('error');
+    if(oauthError){
+      history.replaceState(null,'',location.pathname+location.search);
+      throw new Error(oauthError);
+    }
+    const accessToken=params.get('access_token');
+    if(!accessToken)return null;
+    const oauthSession={
+      access_token:accessToken,
+      refresh_token:params.get('refresh_token')||'',
+      expires_in:Number(params.get('expires_in')||0),
+      expires_at:Math.floor(Date.now()/1000)+Number(params.get('expires_in')||0),
+      token_type:params.get('token_type')||'bearer'
+    };
+    localStorage.setItem(SESSION_KEY,JSON.stringify(oauthSession));
+    history.replaceState(null,'',location.pathname+location.search);
+    const access=await request('/rest/v1/rpc/current_account_access',{method:'POST',body:'{}'});
+    if(!access||access.status!=='active'){
+      await signOut();
+      throw new Error('ACCOUNT_NOT_ACTIVE');
+    }
+    localStorage.setItem(ACCESS_KEY,JSON.stringify(access));
+    return access;
+  }
   async function signOut(){
     if(configured()&&session())await request('/auth/v1/logout',{method:'POST'}).catch(()=>{});
     [SESSION_KEY,ACCESS_KEY,'oravenaSessionEmail','oravenaSessionRole','oravenaRole'].forEach(k=>localStorage.removeItem(k));
@@ -55,5 +89,5 @@
   async function signUpStaff(email,password,fullName){
     return request('/auth/v1/signup',{method:'POST',authenticated:false,body:JSON.stringify({email:String(email).trim().toLowerCase(),password,data:{full_name:fullName||''}})});
   }
-  window.OravenaDB={configured,session,access:()=>read(ACCESS_KEY),request,signIn,signOut,bookAppointment,loadCore,saveStaffInvitation,signUpStaff};
+  window.OravenaDB={configured,session,access:()=>read(ACCESS_KEY),request,signIn,signInWithGoogle,completeOAuth,signOut,bookAppointment,loadCore,saveStaffInvitation,signUpStaff};
 })();

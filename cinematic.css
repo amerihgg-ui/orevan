@@ -39,10 +39,3 @@ html[dir=rtl] .cinematic-home .hero-scrim{background:linear-gradient(270deg,#020
 .service-card:nth-child(4),.journey-steps li:nth-child(4){transition-delay:.24s}
 @media(max-width:640px){.cinematic-home .topbar{height:70px}.cinematic-home .topbar.scrolled{inset:7px 8px auto;height:62px}.cinematic-home .hero{height:100svh;min-height:740px}.cinematic-home .hero h1{font-size:clamp(3rem,16vw,5rem);line-height:.92}.cinematic-home .hero-content{margin-top:80px}.cinematic-home .promise-strip{padding-inline:0}.cinematic-home .service-card{border-radius:3px}}
 @media(prefers-reduced-motion:reduce){.cinematic-reveal{opacity:1;transform:none}}
-
-/* Language-aware typography: Latin and Turkish copy needs a different measure than Arabic. */
-html[lang="en"] .cinematic-home .hero h1{font-size:clamp(3.1rem,7.4vw,8rem);line-height:.92;letter-spacing:-.055em}
-html[lang="tr"] .cinematic-home .hero h1{font-size:clamp(2.9rem,6.8vw,7.3rem);line-height:.95;letter-spacing:-.045em}
-html[lang="en"] .cinematic-home .hero-copy,html[lang="tr"] .cinematic-home .hero-copy{max-width:680px;line-height:1.7}
-html[lang="en"] .cinematic-home .section-heading h2,html[lang="tr"] .cinematic-home .section-heading h2{font-size:clamp(2.2rem,4.4vw,4.8rem);line-height:1.03}
-@media(max-width:640px){html[lang="en"] .cinematic-home .hero h1{font-size:clamp(2.55rem,13.2vw,4.25rem)}html[lang="tr"] .cinematic-home .hero h1{font-size:clamp(2.35rem,11.8vw,3.9rem)}}
