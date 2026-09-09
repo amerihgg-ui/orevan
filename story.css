@@ -6,3 +6,4 @@
 @media(max-width:1000px){.story-chapter{grid-template-columns:.22fr 1fr;min-height:auto}.story-chapter>*:nth-child(3){grid-column:2}.story-orbit{grid-column:2}.subpage .mobile-nav{top:74px}}
 @media(max-width:640px){.story-hero{min-height:720px}.story-hero>img{object-position:66% center}.story-hero-shade{background:linear-gradient(0deg,rgba(3,39,44,.94) 0%,rgba(5,51,57,.6) 57%,rgba(5,51,57,.12) 100%)!important}.story-hero-copy{width:auto;margin:0 22px 105px}.story-hero h1{font-size:3.55rem}.story-chapter{grid-template-columns:1fr;padding:85px 22px;gap:28px}.story-chapter>*:nth-child(3),.story-orbit{grid-column:1}.chapter-number{font-size:4.5rem}.story-chapter blockquote{padding:25px}.story-finale{min-height:720px}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.orbit-ring{animation:none}}
+html:not(.motion-ready) .reveal{opacity:1;transform:none}
