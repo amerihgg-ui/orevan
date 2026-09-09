@@ -55,7 +55,6 @@
         <div class="hero-actions">
           <button class="button button-light" data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button>
           <button class="button button-glass" data-open="loginDialog" type="button" data-i18n="patientLogin">دخول المريض</button>
-          <a class="button button-primary" href="system.html?role=admin" data-i18n="demoSystem">تجربة النظام الكامل</a>
           <a class="button button-link" href="about.html" data-i18n="meetClinic">تعرّف على العيادة</a>
         </div>
       </div>
@@ -212,10 +211,28 @@
       <label><span data-i18n="workEmail">البريد الوظيفي</span><input name="email" type="email" autocomplete="username" required></label>
       <label><span data-i18n="password">كلمة المرور</span><input name="password" type="password" autocomplete="current-password" required></label>
       <button class="button button-primary full" type="submit" data-i18n="login">دخول آمن</button>
+      <button class="button button-glass full" type="button" data-open="staffActivationDialog">تفعيل حساب فريق جديد</button>
       <p class="form-status" id="staffLoginStatus" role="status"></p>
     </form>
   </dialog>
 
+  <dialog id="staffActivationDialog" class="modal">
+    <form id="staffActivationForm" method="dialog">
+      <button class="modal-close" value="cancel" aria-label="إغلاق">×</button>
+      <img class="modal-logo" src="assets/oravena-icon.svg" alt="">
+      <p class="eyebrow dark">ORAVENA PRO</p>
+      <h2>تفعيل حساب الفريق</h2>
+      <p class="modal-copy">استخدم البريد الذي أضافه المدير مسبقًا وحدد كلمة مرور خاصة بك.</p>
+      <label><span>الاسم الكامل</span><input name="fullName" autocomplete="name" required></label>
+      <label><span>البريد الوظيفي</span><input name="email" type="email" autocomplete="username" required></label>
+      <label><span>كلمة المرور الجديدة</span><input name="password" type="password" minlength="8" autocomplete="new-password" required></label>
+      <button class="button button-primary full" type="submit">تفعيل الحساب</button>
+      <p class="form-status" id="staffActivationStatus" role="status"></p>
+    </form>
+  </dialog>
+
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
