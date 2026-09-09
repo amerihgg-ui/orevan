@@ -12,7 +12,10 @@ ORAVENA — Google sign-in setup
    - Enable Google and paste the Google Client ID and Client Secret.
    - Authentication > URL Configuration.
    - Add this Redirect URL:
-     https://oravena-dental.aboughazala.chatgpt.site/index.html?oauth=google
+     https://oravena-dental.aboughazala.chatgpt.site/login.html?oauth=google
+
+   - GitHub Pages Redirect URL:
+     https://amerihgg-ui.github.io/orevan/login.html?oauth=google
 
 3) Other production domains
    - If ORAVENA is also hosted on GitHub Pages or a custom domain, add that

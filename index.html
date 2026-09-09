@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d5963">
-  <meta name="description" content="ORAVENA Dental — رعاية أسنان حديثة، حجز مواعيد واضح، ومتابعة علاجية رقمية آمنة.">
-  <title>ORAVENA Dental | رعاية أسنان متكاملة</title>
+  <meta name="description" content="ORAVENA — رعاية أسنان حديثة، حجز مواعيد واضح، ومتابعة علاجية رقمية آمنة.">
+  <title>ORAVENA</title>
   <link rel="icon" href="assets/oravena-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="story.css">
@@ -14,19 +14,18 @@
 <body class="cinematic-home">
   <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
   <header class="topbar" id="topbar">
-    <a class="brand" href="#home" aria-label="ORAVENA Dental - الرئيسية">
-      <img src="assets/oravena-logo.svg" alt="ORAVENA Dental">
+    <a class="brand" href="#home" aria-label="ORAVENA - الرئيسية">
+      <img src="assets/oravena-logo.svg" alt="ORAVENA">
     </a>
     <nav class="desktop-nav" aria-label="التنقل الرئيسي">
       <a href="index.html" data-i18n="navHome">الرئيسية</a>
       <a href="about.html" data-i18n="navStory">قصتنا</a>
-      <button class="nav-entry" data-open="loginDialog" type="button" data-i18n="navAccount">حسابي</button>
+      <a class="account-link" href="login.html" data-i18n="navAccount">حسابي</a>
     </nav>
     <div class="header-actions">
       <button class="language-button" id="languageButton" type="button" aria-label="تغيير اللغة">AR</button>
-      <a class="button button-glass desktop-only staff-access" id="staffAccess" href="system.html" hidden>لوحة العمل</a>
+      <a class="button button-glass desktop-only role-access" href="system.html" hidden>لوحة العمل</a>
       <button class="button button-primary desktop-only" data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button>
-      <button class="staff-login-link desktop-only" data-open="staffDialog" data-role="employee" type="button">دخول الفريق</button>
       <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="فتح القائمة">
         <span></span><span></span><span></span>
       </button>
@@ -36,9 +35,8 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="التنقل على الهاتف" hidden>
     <a href="index.html" data-i18n="navHome">الرئيسية</a>
     <a href="about.html" data-i18n="navStory">قصتنا</a>
-    <button class="nav-entry" data-open="loginDialog" type="button" data-i18n="navAccount">حسابي</button>
-    <a class="button button-glass staff-access" id="mobileStaffAccess" href="system.html" hidden>لوحة العمل</a>
-    <button class="nav-entry" data-open="staffDialog" data-role="employee" type="button">دخول الفريق</button>
+    <a class="account-link" href="login.html" data-i18n="navAccount">حسابي</a>
+    <a class="button button-glass role-access" href="system.html" hidden>لوحة العمل</a>
     <button class="button button-primary" data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button>
   </nav>
 
@@ -54,19 +52,9 @@
         <p class="hero-copy" data-i18n="heroCopy">من أول موعد إلى آخر متابعة، كل خطوة في خطتك واضحة ومحفوظة وآمنة.</p>
         <div class="hero-actions">
           <button class="button button-light" data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button>
-          <button class="button button-glass" data-open="loginDialog" type="button" data-i18n="patientLogin">دخول المريض</button>
+          <a class="button button-glass account-link" href="login.html" data-i18n="patientLogin">دخول المريض</a>
           <a class="button button-link" href="about.html" data-i18n="meetClinic">تعرّف على العيادة</a>
         </div>
-      </div>
-      <div class="video-controls" aria-label="التحكم في الفيديو">
-        <button id="soundButton" type="button" aria-label="تشغيل صوت الفيديو">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.8 8.4H3.5v7.2h3.3L11 19V5Zm4.2 3.1a5.5 5.5 0 0 1 0 7.8M17.8 5.5a9 9 0 0 1 0 13"/></svg>
-          <span data-i18n="sound">الصوت</span>
-        </button>
-        <button id="replayButton" type="button" aria-label="إعادة الفيديو الكامل">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.7 9A8 8 0 1 1 4 14m.7-5V4m0 5h5"/></svg>
-          <span data-i18n="replay">إعادة الكامل</span>
-        </button>
       </div>
       <a class="scroll-cue" href="#services" aria-label="استكشف الصفحة"><span></span></a>
     </section>
@@ -137,14 +125,14 @@
           <li data-i18n="carePoint2">طلبات تعديل البيانات تخضع لاعتماد العيادة</li>
           <li data-i18n="carePoint3">تنزيل موثّق للملفات بعد تحقق إضافي</li>
         </ul>
-        <button class="button button-primary" data-open="loginDialog" type="button" data-i18n="enterCare">ادخل إلى ORAVENA Care</button>
+        <a class="button button-primary account-link" href="login.html" data-i18n="enterCare">ادخل إلى ORAVENA Care</a>
       </div>
       <div class="care-preview" aria-label="معاينة حساب المريض">
         <div class="preview-top"><img src="assets/oravena-icon.svg" alt=""><span>ORAVENA CARE</span><b>•••</b></div>
         <div class="preview-welcome"><small data-i18n="welcomeBack">أهلًا بعودتك</small><strong data-i18n="previewName">سارة محمد</strong></div>
         <div class="preview-appointment">
           <span class="date-block"><b>08</b><small>SEP</small></span>
-          <div><small data-i18n="nextAppointment">موعدك القادم</small><strong data-i18n="appointmentType">متابعة خطة العلاج</strong><span>15:30 · ORAVENA Dental</span></div>
+          <div><small data-i18n="nextAppointment">موعدك القادم</small><strong data-i18n="appointmentType">متابعة خطة العلاج</strong><span>15:30 · ORAVENA</span></div>
         </div>
         <div class="preview-grid">
           <div><span>6</span><small data-i18n="sessions">الجلسات</small></div>
@@ -165,10 +153,10 @@
   </main>
 
   <footer>
-    <img src="assets/oravena-logo.svg" alt="ORAVENA Dental">
+    <img src="assets/oravena-logo.svg" alt="ORAVENA">
     <p data-i18n="footerText">رعاية أسنان حديثة بتجربة واضحة وآمنة.</p>
     <div><a href="#services" data-i18n="navServices">الخدمات</a><a href="about.html" data-i18n="navAbout">من نحن</a><button data-open="bookingDialog" type="button" data-i18n="bookNow">احجز موعدًا</button></div>
-    <small>© 2026 ORAVENA Dental</small>
+    <small>© 2026 ORAVENA</small>
   </footer>
 
   <dialog id="bookingDialog" class="modal">
@@ -178,66 +166,13 @@
       <h2 data-i18n="bookingTitle">ابدأ بخطوة بسيطة</h2>
       <p class="modal-copy" data-i18n="bookingCopy">أرسل البيانات الأساسية وسيتواصل معك الاستقبال لتأكيد الموعد.</p>
       <label><span data-i18n="fullName">الاسم الكامل</span><input name="name" autocomplete="name" required></label>
+      <label><span data-i18n="email">البريد الإلكتروني</span><input name="email" type="email" autocomplete="email" required></label>
       <label><span data-i18n="phone">رقم الهاتف</span><input name="phone" type="tel" autocomplete="tel" required></label>
       <label><span data-i18n="nationalId">رقم الهوية (اختياري)</span><input name="nationalId" inputmode="numeric"></label>
       <label><span data-i18n="age">السن</span><input name="age" type="number" min="0" max="120" required></label>
       <label><span data-i18n="service">الخدمة المطلوبة</span><textarea name="service" rows="3" placeholder="اكتب الخدمة أو سبب الزيارة" required></textarea></label>
       <button class="button button-primary full" type="submit" data-i18n="sendRequest">إرسال الطلب</button>
       <p class="form-status" id="bookingStatus" role="status"></p>
-    </form>
-  </dialog>
-
-  <dialog id="loginDialog" class="modal">
-    <form id="loginForm" method="dialog">
-      <button class="modal-close" value="cancel" aria-label="إغلاق">×</button>
-      <img class="modal-logo" src="assets/oravena-icon.svg" alt="">
-      <p class="eyebrow dark">ORAVENA CARE</p>
-      <h2 data-i18n="loginTitle">دخول المريض</h2>
-      <label><span data-i18n="phoneOrFile">الهاتف أو رقم الملف</span><input name="identity" autocomplete="username" required></label>
-      <label><span data-i18n="password">كلمة المرور</span><input name="password" type="password" autocomplete="current-password" required></label>
-      <button class="button button-primary full" type="submit" data-i18n="login">دخول آمن</button>
-      <div class="auth-divider"><span>أو</span></div>
-      <button class="button google-login full" type="button" data-google-login>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.4-.18-2.06H12v3.9h5.38a4.6 4.6 0 0 1-2 3.02v2.53h3.24c1.9-1.75 2.98-4.33 2.98-7.39Z"/><path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.62-2.38l-3.24-2.53c-.9.6-2.05.96-3.38.96-2.61 0-4.82-1.76-5.61-4.13H3.04v2.61A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.39 13.92A6.02 6.02 0 0 1 6.07 12c0-.67.12-1.32.32-1.92V7.47H3.04A10 10 0 0 0 2 12c0 1.61.38 3.14 1.04 4.53l3.35-2.61Z"/><path fill="#EA4335" d="M12 5.95c1.47 0 2.79.5 3.82 1.5l2.87-2.87A9.62 9.62 0 0 0 12 2a10 10 0 0 0-8.96 5.47l3.35 2.61C7.18 7.71 9.39 5.95 12 5.95Z"/></svg>
-        <span data-i18n="googleLogin">الدخول باستخدام Google</span>
-      </button>
-      <p class="form-status" id="loginStatus" role="status"></p>
-    </form>
-  </dialog>
-
-  <dialog id="staffDialog" class="modal">
-    <form id="staffLoginForm" method="dialog">
-      <button class="modal-close" value="cancel" aria-label="إغلاق">×</button>
-      <img class="modal-logo" src="assets/oravena-icon.svg" alt="">
-      <p class="eyebrow dark">ORAVENA PRO</p>
-      <h2 id="staffLoginTitle" data-i18n="doctorLoginTitle">دخول الدكتور</h2>
-      <p class="modal-copy" data-i18n="staffLoginCopy">دخول مخصص لفريق العيادة وفق الصلاحيات المعتمدة لكل حساب.</p>
-      <input id="staffRole" name="role" type="hidden" value="doctor">
-      <label><span data-i18n="workEmail">البريد الوظيفي</span><input name="email" type="email" autocomplete="username" required></label>
-      <label><span data-i18n="password">كلمة المرور</span><input name="password" type="password" autocomplete="current-password" required></label>
-      <button class="button button-primary full" type="submit" data-i18n="login">دخول آمن</button>
-      <div class="auth-divider"><span>أو</span></div>
-      <button class="button google-login full" type="button" data-google-login>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.4-.18-2.06H12v3.9h5.38a4.6 4.6 0 0 1-2 3.02v2.53h3.24c1.9-1.75 2.98-4.33 2.98-7.39Z"/><path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.62-2.38l-3.24-2.53c-.9.6-2.05.96-3.38.96-2.61 0-4.82-1.76-5.61-4.13H3.04v2.61A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.39 13.92A6.02 6.02 0 0 1 6.07 12c0-.67.12-1.32.32-1.92V7.47H3.04A10 10 0 0 0 2 12c0 1.61.38 3.14 1.04 4.53l3.35-2.61Z"/><path fill="#EA4335" d="M12 5.95c1.47 0 2.79.5 3.82 1.5l2.87-2.87A9.62 9.62 0 0 0 12 2a10 10 0 0 0-8.96 5.47l3.35 2.61C7.18 7.71 9.39 5.95 12 5.95Z"/></svg>
-        <span data-i18n="googleLogin">الدخول باستخدام Google</span>
-      </button>
-      <button class="button button-glass full" type="button" data-open="staffActivationDialog">تفعيل حساب فريق جديد</button>
-      <p class="form-status" id="staffLoginStatus" role="status"></p>
-    </form>
-  </dialog>
-
-  <dialog id="staffActivationDialog" class="modal">
-    <form id="staffActivationForm" method="dialog">
-      <button class="modal-close" value="cancel" aria-label="إغلاق">×</button>
-      <img class="modal-logo" src="assets/oravena-icon.svg" alt="">
-      <p class="eyebrow dark">ORAVENA PRO</p>
-      <h2>تفعيل حساب الفريق</h2>
-      <p class="modal-copy">استخدم البريد الذي أضافه المدير مسبقًا وحدد كلمة مرور خاصة بك.</p>
-      <label><span>الاسم الكامل</span><input name="fullName" autocomplete="name" required></label>
-      <label><span>البريد الوظيفي</span><input name="email" type="email" autocomplete="username" required></label>
-      <label><span>كلمة المرور الجديدة</span><input name="password" type="password" minlength="8" autocomplete="new-password" required></label>
-      <button class="button button-primary full" type="submit">تفعيل الحساب</button>
-      <p class="form-status" id="staffActivationStatus" role="status"></p>
     </form>
   </dialog>
 

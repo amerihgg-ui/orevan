@@ -134,7 +134,7 @@ begin
     id,email,full_name,account_type,job_title,phone,status
   ) values (
     new.id,lower(new.email),v_full_name,v_account_type,
-    v_invitation.job_title,v_invitation.phone,'active'
+    v_invitation.job_title,coalesce(v_invitation.phone,nullif(new.raw_user_meta_data->>'phone','')),'active'
   ) on conflict (id) do update set
     email=excluded.email,
     full_name=case when excluded.full_name<>''
@@ -162,6 +162,9 @@ begin
     update public.staff_invitations set
       status='activated',activated_at=coalesce(activated_at,now()),updated_at=now()
     where id=v_invitation.id;
+  elsif v_account_type='patient' then
+    update public.patients set auth_user_id=new.id,updated_at=now()
+    where auth_user_id is null and lower(email)=lower(coalesce(new.email,''));
   end if;
 
   return new;

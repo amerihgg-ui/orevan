@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d5963">
-  <meta name="description" content="قصة ORAVENA Dental وفلسفة الرعاية التي تجمع بين الدقة الطبية والتجربة الإنسانية.">
-  <title>من نحن | ORAVENA Dental</title>
+  <meta name="description" content="قصة ORAVENA وفلسفة الرعاية التي تجمع بين الدقة الطبية والتجربة الإنسانية.">
+  <title>ORAVENA</title>
   <link rel="icon" href="assets/oravena-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="story.css">
@@ -14,14 +14,15 @@
 <body class="subpage">
   <a class="skip-link" href="#story">انتقل إلى القصة</a>
   <header class="topbar story-topbar">
-    <a class="brand" href="index.html" aria-label="ORAVENA Dental - الرئيسية"><img src="assets/oravena-logo.svg" alt="ORAVENA Dental"></a>
+    <a class="brand" href="index.html" aria-label="ORAVENA - الرئيسية"><img src="assets/oravena-logo.svg" alt="ORAVENA"></a>
     <nav class="desktop-nav" aria-label="المداخل الرئيسية">
       <a href="index.html" data-i18n="navHome">الرئيسية</a>
       <a href="about.html" class="active" data-i18n="navStory">قصتنا</a>
-      <a href="index.html?portal=patient" data-i18n="navAccount">حسابي</a>
+      <a class="account-link" href="login.html" data-i18n="navAccount">حسابي</a>
     </nav>
     <div class="header-actions">
       <button class="language-button" id="languageButton" type="button" aria-label="تغيير اللغة">AR</button>
+      <a class="button button-ghost desktop-only role-access" href="system.html" hidden>لوحة العمل</a>
       <a class="button button-primary desktop-only" href="index.html?booking=1" data-i18n="bookNow">احجز موعدًا</a>
       <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="فتح القائمة"><span></span><span></span><span></span></button>
     </div>
@@ -29,7 +30,8 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="التنقل على الهاتف" hidden>
     <a href="index.html" data-i18n="navHome">الرئيسية</a>
     <a href="about.html" data-i18n="navStory">قصتنا</a>
-    <a href="index.html?portal=patient" data-i18n="navAccount">حسابي</a>
+    <a class="account-link" href="login.html" data-i18n="navAccount">حسابي</a>
+    <a class="button button-ghost role-access" href="system.html" hidden>لوحة العمل</a>
     <a class="button button-primary" href="index.html?booking=1" data-i18n="bookNow">احجز موعدًا</a>
   </nav>
 
@@ -98,11 +100,13 @@
     </section>
   </main>
   <footer>
-    <img src="assets/oravena-logo.svg" alt="ORAVENA Dental">
+    <img src="assets/oravena-logo.svg" alt="ORAVENA">
     <p data-i18n="footerText">رعاية أسنان حديثة بتجربة واضحة وآمنة.</p>
     <div><a href="index.html#services" data-i18n="navServices">الخدمات</a><a href="index.html#journey" data-i18n="navJourney">رحلة العلاج</a><a href="index.html?booking=1" data-i18n="bookNow">احجز موعدًا</a></div>
-    <small>© 2026 ORAVENA Dental</small>
+    <small>© 2026 ORAVENA</small>
   </footer>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
   <script src="about.js"></script>
 </body>
 </html>

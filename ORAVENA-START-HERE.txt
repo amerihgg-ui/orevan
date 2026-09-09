@@ -1,0 +1,15 @@
+ORAVENA — خطوات تفعيل هذا التحديث
+
+1) ارفع كل الملفات الموجودة في جذر الحزمة إلى مستودع GitHub Pages بدل الملفات القديمة.
+
+2) في Supabase افتح SQL Editor ثم شغّل الملف:
+   supabase/ORAVENA-BOOKING-EMAIL-AUTH.sql
+
+3) في Supabase > Authentication > URL Configuration أضف Redirect URL التالي:
+   https://amerihgg-ui.github.io/orevan/login.html?oauth=google
+
+مهم:
+- لا تضع مفتاح Secret أو Service Role في ملفات الموقع.
+- تسجيل الدخول وحسابات الفريق وGoogle محفوظة كما هي.
+- المريض أو الزائر لا يرى أقسام الفريق.
+- المدير والطبيب والموظف تظهر لهم خانة العمل المناسبة بعد تسجيل الدخول.

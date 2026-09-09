@@ -1,4 +1,4 @@
--- ORAVENA Dental — initial production database
+-- ORAVENA — initial production database
 -- Run this entire file once in Supabase SQL Editor.
 -- Primary administrator: amerihgg@gmail.com
 
@@ -49,6 +49,7 @@ create table if not exists public.patients (
   file_number text unique not null
     default ('OR-' || nextval('public.patient_file_seq')),
   full_name text not null,
+  email text,
   phone text not null,
   national_id text,
   age integer check (age between 0 and 120),
@@ -71,6 +72,7 @@ create table if not exists public.appointments (
   id uuid primary key default gen_random_uuid(),
   patient_id uuid not null references public.patients(id) on delete cascade,
   full_name text not null,
+  email text,
   phone text not null,
   national_id text,
   age integer check (age between 0 and 120),
@@ -219,6 +221,7 @@ $$;
 
 create or replace function public.create_appointment_request(
   p_full_name text,
+  p_email text,
   p_phone text,
   p_national_id text,
   p_age integer,
@@ -230,6 +233,7 @@ declare
   v_appointment_id uuid;
 begin
   if length(trim(p_full_name))<2
+     or position('@' in trim(p_email))<2
      or length(trim(p_phone))<6
      or length(trim(p_service))<2
      or p_age not between 0 and 120 then
@@ -240,20 +244,22 @@ begin
   from public.patients where phone=trim(p_phone) limit 1;
 
   if v_patient_id is null then
-    insert into public.patients(full_name,phone,national_id,age)
-    values(trim(p_full_name),trim(p_phone),nullif(trim(p_national_id),''),p_age)
+    insert into public.patients(auth_user_id,full_name,email,phone,national_id,age)
+    values(auth.uid(),trim(p_full_name),lower(trim(p_email)),trim(p_phone),nullif(trim(p_national_id),''),p_age)
     returning id into v_patient_id;
   else
     update public.patients set
       full_name=trim(p_full_name),
+      email=lower(trim(p_email)),
+      auth_user_id=coalesce(auth_user_id,auth.uid()),
       national_id=coalesce(nullif(trim(p_national_id),''),national_id),
       age=p_age,
       updated_at=now()
     where id=v_patient_id;
   end if;
 
-  insert into public.appointments(patient_id,full_name,phone,national_id,age,service)
-  values(v_patient_id,trim(p_full_name),trim(p_phone),
+  insert into public.appointments(patient_id,full_name,email,phone,national_id,age,service)
+  values(v_patient_id,trim(p_full_name),lower(trim(p_email)),trim(p_phone),
     nullif(trim(p_national_id),''),p_age,trim(p_service))
   returning id into v_appointment_id;
 
@@ -262,6 +268,7 @@ begin
     jsonb_build_object(
       'title','طلب موعد جديد',
       'text',trim(p_full_name)||' — '||trim(p_service),
+      'email',lower(trim(p_email)),
       'appointment_id',v_appointment_id,
       'read',false
     ),false);
@@ -336,7 +343,7 @@ for all to authenticated using (
 
 grant usage on schema public to anon,authenticated;
 grant execute on function public.current_account_access() to authenticated;
-grant execute on function public.create_appointment_request(text,text,text,integer,text)
+grant execute on function public.create_appointment_request(text,text,text,text,integer,text)
   to anon,authenticated;
 
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)

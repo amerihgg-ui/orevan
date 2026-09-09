@@ -9,8 +9,11 @@
 .cinematic-home .hero-scrim{background:linear-gradient(90deg,#02090ced 0%,#04272dcc 42%,#02101445 72%),linear-gradient(0deg,#02090ce8,transparent 55%)}
 html[dir=rtl] .cinematic-home .hero-scrim{background:linear-gradient(270deg,#02090ced 0%,#04272dcc 42%,#02101445 72%),linear-gradient(0deg,#02090ce8,transparent 55%)}
 .cinematic-home .hero-content{width:min(980px,88vw);margin-top:90px}
-.cinematic-home .hero h1{font-family:"Arial Black",Tahoma,sans-serif;font-size:clamp(3.6rem,8.4vw,9.2rem);line-height:.86;letter-spacing:-.075em;text-transform:uppercase;max-width:980px;text-shadow:0 20px 70px #0008}
-.cinematic-home .hero h1 em{color:var(--electric);text-shadow:0 0 42px #32d7ca33}
+.cinematic-home .hero h1{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:clamp(3.4rem,6.8vw,7.6rem);line-height:.94;letter-spacing:-.048em;text-transform:uppercase;max-width:940px;text-shadow:0 20px 70px #0008;font-weight:850}
+.cinematic-home .hero h1 em{color:var(--electric);text-shadow:0 0 42px #32d7ca33;position:relative;display:inline-block}
+.cinematic-home .hero h1 em:after{content:"";position:absolute;inset-inline-start:0;bottom:-.08em;width:clamp(58px,9vw,130px);height:clamp(3px,.45vw,7px);background:linear-gradient(90deg,var(--electric),transparent);border-radius:999px}
+html[lang=ar] .cinematic-home .hero h1{font-family:Tahoma,"Segoe UI",Arial,sans-serif;font-size:clamp(3rem,6vw,6.5rem);line-height:1.12;letter-spacing:0;text-transform:none;max-width:900px;font-weight:800}
+html[lang=tr] .cinematic-home .hero h1{font-size:clamp(3.15rem,6.25vw,6.9rem);line-height:.98;letter-spacing:-.04em}
 .cinematic-home .hero-copy{font-size:clamp(1rem,1.45vw,1.28rem);max-width:620px}
 .cinematic-home .button{border-radius:12px}
 .cinematic-home .button-primary{background:var(--electric);box-shadow:0 0 0 1px #55eee044,0 14px 40px #18b7ad2d}
@@ -37,5 +40,5 @@ html[dir=rtl] .cinematic-home .hero-scrim{background:linear-gradient(270deg,#020
 .service-card:nth-child(2),.journey-steps li:nth-child(2){transition-delay:.08s}
 .service-card:nth-child(3),.journey-steps li:nth-child(3){transition-delay:.16s}
 .service-card:nth-child(4),.journey-steps li:nth-child(4){transition-delay:.24s}
-@media(max-width:640px){.cinematic-home .topbar{height:70px}.cinematic-home .topbar.scrolled{inset:7px 8px auto;height:62px}.cinematic-home .hero{height:100svh;min-height:740px}.cinematic-home .hero h1{font-size:clamp(3rem,16vw,5rem);line-height:.92}.cinematic-home .hero-content{margin-top:80px}.cinematic-home .promise-strip{padding-inline:0}.cinematic-home .service-card{border-radius:3px}}
+@media(max-width:640px){.cinematic-home .topbar{height:70px}.cinematic-home .topbar.scrolled{inset:7px 8px auto;height:62px}.cinematic-home .hero{height:100svh;min-height:740px}.cinematic-home .hero h1{font-size:clamp(2.8rem,13vw,4.25rem);line-height:1}.cinematic-home .hero-content{margin-top:80px}.cinematic-home .promise-strip{padding-inline:0}.cinematic-home .service-card{border-radius:3px}html[lang=ar] .cinematic-home .hero h1{font-size:clamp(2.65rem,12vw,4rem);line-height:1.16}html[lang=tr] .cinematic-home .hero h1{font-size:clamp(2.65rem,11.5vw,3.8rem);line-height:1.04}}
 @media(prefers-reduced-motion:reduce){.cinematic-reveal{opacity:1;transform:none}}

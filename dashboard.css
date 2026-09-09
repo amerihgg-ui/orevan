@@ -23,3 +23,4 @@
 .tooth-hotspot:hover .tooth-tip,.tooth-hotspot:focus-visible .tooth-tip{visibility:visible;opacity:1;transform:translateX(50%) translateY(0)}
 .clinical-odontogram .legend{margin-top:15px}.clinical-odontogram .legend i.implant{background:#71888c!important}.odontogram-note{text-align:center;margin:12px 0 0;color:var(--muted);font-size:.78rem}
 @media(max-width:780px){.clinical-odontogram{padding:10px 7px 18px;border-radius:18px}.odontogram-stage{border-radius:15px}.odontogram-stage>img{border-radius:15px}.arch-label{padding:5px 8px;font-size:.62rem}.tooth-hotspot>b{min-width:17px;height:17px;bottom:-10px;font-size:.56rem}.tooth-hotspot .tooth-tip{display:none}.odontogram-note{padding-inline:10px}.clinical-odontogram .legend{gap:8px;font-size:.68rem}}
+html,body,button,input,select,textarea{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
