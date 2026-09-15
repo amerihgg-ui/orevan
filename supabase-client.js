@@ -90,18 +90,46 @@
   }
   async function loadCore(){
     const account=read(ACCESS_KEY);
-    const [patients,appointments,notifications,staff]=await Promise.all([
+    const [patients,appointments,records,staff]=await Promise.all([
       request('/rest/v1/patients?select=*&order=created_at.desc'),
       request('/rest/v1/appointments?select=*,patients(full_name,file_number)&order=created_at.desc'),
-      request('/rest/v1/clinic_records?record_type=eq.notification&select=*&order=created_at.desc'),
+      request('/rest/v1/clinic_records?select=*&order=created_at.desc'),
       account?.account_type==='admin'?request('/rest/v1/staff_invitations?select=*&order=created_at.desc'):Promise.resolve([])
     ]);
+    const recordMap={session:'sessions',treatment_plan:'plans',prescription:'prescriptions',imaging:'imaging',finance:'finance',inventory:'inventory',lab:'labs',message:'messages',notification:'notifications',audit:'audit'};
+    const mapped={sessions:[],plans:[],prescriptions:[],imaging:[],finance:[],inventory:[],labs:[],messages:[],notifications:[],audit:[]};
+    records.forEach(record=>{
+      const key=recordMap[record.record_type];
+      if(!key)return;
+      const row={id:record.id,...(record.payload||{}),patientId:record.patient_id||'',patientVisible:record.patient_visible,createdAt:record.created_at};
+      mapped[key].push(row);
+    });
     return {
       patients:patients.map(p=>({id:p.id,file:p.file_number,name:p.full_name,email:p.email||'',phone:p.phone,nationalId:p.national_id||'',age:p.age??'',birth:p.birth_date||'',blood:p.blood_type||'',allergy:p.allergy||'',chronic:p.chronic_conditions||'',meds:p.current_medications||'',doctorNotes:p.doctor_notes||'',contact:p.emergency_contact||'',balance:String(p.balance??0)})),
       appointments:appointments.map(a=>({id:a.id,patientId:a.patient_id,patient:a.patients?.full_name||a.full_name,email:a.email||'',phone:a.phone,service:a.service,date:a.appointment_date||'',time:a.appointment_time||'',doctor:'غير محدد',status:({new_request:'طلب جديد',confirmed:'مؤكد',changed:'معدل',cancelled:'ملغي',completed:'مكتمل'})[a.status]||a.status,changeReason:a.change_reason||'',createdAt:a.created_at})),
-      notifications:notifications.map(n=>({id:n.id,title:n.payload?.title||'إشعار',text:n.payload?.text||'',patientId:n.patient_id,read:Boolean(n.payload?.read)})),
+      ...mapped,
       staff:staff.map(s=>({id:s.id,name:s.full_name,email:s.email,systemRole:s.account_type,role:s.job_title||'',phone:s.phone||'',shift:'',status:({pending:'بانتظار التفعيل',activated:'نشط',suspended:'موقوف'})[s.status]||s.status,permissions:(s.sections||[]).join(','),permissionTemplates:(s.permission_templates||[]).join(',')}))
     };
+  }
+  const recordTypes={sessions:'session',plans:'treatment_plan',prescriptions:'prescription',imaging:'imaging',finance:'finance',inventory:'inventory',labs:'lab',messages:'message',notifications:'notification',audit:'audit'};
+  async function saveClinicRecord(kind,data,id=''){
+    const recordType=recordTypes[kind];
+    if(!recordType)throw new Error('UNSUPPORTED_RECORD_TYPE');
+    const payload={...data};
+    delete payload.id;delete payload.patientId;delete payload.patientVisible;delete payload.createdAt;
+    const financeVisible=recordType==='finance'&&['فاتورة علاج','دفعة','استرداد'].includes(data.type);
+    const patientVisible=(['session','treatment_plan','prescription','imaging','message'].includes(recordType)||financeVisible)&&data.patientVisible!==false;
+    const body={record_type:recordType,patient_id:data.patientId||null,payload,patient_visible:patientVisible};
+    if(id){
+      const rows=await request(`/rest/v1/clinic_records?id=eq.${encodeURIComponent(id)}&select=*`,{method:'PATCH',headers:{Prefer:'return=representation'},body:JSON.stringify(body)});
+      return rows?.[0];
+    }
+    const rows=await request('/rest/v1/clinic_records?select=*',{method:'POST',headers:{Prefer:'return=representation'},body:JSON.stringify(body)});
+    return rows?.[0];
+  }
+  async function deleteClinicRecord(kind,id){
+    if(!recordTypes[kind])throw new Error('UNSUPPORTED_RECORD_TYPE');
+    return request(`/rest/v1/clinic_records?id=eq.${encodeURIComponent(id)}`,{method:'DELETE',headers:{Prefer:'return=minimal'}});
   }
   async function saveStaffInvitation(data){
     return request('/rest/v1/rpc/upsert_staff_invitation',{method:'POST',body:JSON.stringify({
@@ -121,5 +149,5 @@
     }
     return {data,access:null};
   }
-  window.OravenaDB={configured,session,access:()=>read(ACCESS_KEY),request,refreshSession,signIn,signInWithGoogle,completeOAuth,signOut,bookAppointment,loadCore,saveStaffInvitation,signUpAccount,signUpStaff:signUpAccount};
+  window.OravenaDB={configured,session,access:()=>read(ACCESS_KEY),request,refreshSession,signIn,signInWithGoogle,completeOAuth,signOut,bookAppointment,loadCore,saveClinicRecord,deleteClinicRecord,saveStaffInvitation,signUpAccount,signUpStaff:signUpAccount};
 })();
