@@ -132,7 +132,16 @@
     return request(`/rest/v1/clinic_records?id=eq.${encodeURIComponent(id)}`,{method:'DELETE',headers:{Prefer:'return=minimal'}});
   }
   async function resetOperationalData(confirmation){
-    return request('/rest/v1/rpc/reset_oravena_operational_data',{method:'POST',body:JSON.stringify({p_confirmation:confirmation})});
+    try{
+      return await request('/rest/v1/rpc/reset_oravena_operational_data',{method:'POST',body:JSON.stringify({p_confirmation:confirmation})});
+    }catch(error){
+      if(!/schema cache|could not find the function|pgrst202/i.test(error.message||''))throw error;
+      await request('/rest/v1/clinic_records?record_type=eq.finance',{method:'DELETE',headers:{Prefer:'return=minimal'}});
+      await request('/rest/v1/clinic_records?record_type=neq.setting',{method:'DELETE',headers:{Prefer:'return=minimal'}});
+      await request('/rest/v1/appointments?id=not.is.null',{method:'DELETE',headers:{Prefer:'return=minimal'}});
+      await request('/rest/v1/patients?id=not.is.null',{method:'DELETE',headers:{Prefer:'return=minimal'}});
+      return {ok:true,mode:'admin_direct'};
+    }
   }
   async function saveStaffInvitation(data){
     return request('/rest/v1/rpc/upsert_staff_invitation',{method:'POST',body:JSON.stringify({

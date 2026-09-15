@@ -42,4 +42,6 @@ $$;
 revoke all on function public.reset_oravena_operational_data(text) from public,anon;
 grant execute on function public.reset_oravena_operational_data(text) to authenticated;
 
+notify pgrst, 'reload schema';
+
 select 'ORAVENA reset data v12 is ready' as result;
