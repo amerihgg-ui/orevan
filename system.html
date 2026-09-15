@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0d5963">
   <title>ORAVENA</title>
   <link rel="icon" href="assets/oravena-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="dashboard.css?v=9">
-  <link rel="stylesheet" href="editorial.css?v=9">
+  <link rel="stylesheet" href="dashboard.css?v=10">
+  <link rel="stylesheet" href="editorial.css?v=10">
 </head>
 <body>
   <aside class="side" id="side">
@@ -16,6 +16,7 @@
     <nav id="sideNav" aria-label="أقسام النظام"></nav>
     <div class="side-foot"><button id="exportButton" type="button">تصدير نسخة احتياطية</button><a href="index.html">العودة للموقع</a></div>
   </aside>
+  <button class="side-backdrop" id="sideBackdrop" type="button" aria-label="إغلاق القائمة" hidden></button>
   <header class="sys-top">
     <button class="hamburger" id="sideToggle" type="button" aria-label="فتح القائمة">☰</button>
     <div class="connection" id="connection"><i></i><span>متصل</span></div>
@@ -41,8 +42,8 @@
   <dialog id="emergencyDialog" class="dialog small"><div class="dialog-body"><button class="dialog-close" type="button" data-close="emergencyDialog">×</button><p class="dialog-kicker danger">وصول طبي طارئ</p><h2>بطاقة الطوارئ</h2><div id="emergencyContent"></div><button class="primary full" id="recordEmergencyButton" type="button">تسجيل فتح البطاقة</button></div></dialog>
   <input id="importInput" type="file" accept="application/json" hidden>
   <div id="toast" class="toast" role="status"></div>
-  <script src="supabase-config.js?v=9"></script>
-  <script src="supabase-client.js?v=9"></script>
-  <script src="dashboard.js?v=9"></script>
+  <script src="supabase-config.js?v=10"></script>
+  <script src="supabase-client.js?v=10"></script>
+  <script src="dashboard.js?v=10"></script>
 </body>
 </html>

@@ -25,3 +25,21 @@
 .clinical-odontogram .legend{margin-top:15px}.clinical-odontogram .legend i.implant{background:#71888c!important}.odontogram-note{text-align:center;margin:12px 0 0;color:var(--muted);font-size:.78rem}
 @media(max-width:780px){.clinical-odontogram{padding:10px 7px 18px;border-radius:18px}.odontogram-stage{border-radius:15px}.odontogram-stage>img{border-radius:15px}.arch-label{padding:5px 8px;font-size:.62rem}.tooth-hotspot>b{min-width:17px;height:17px;bottom:-10px;font-size:.56rem}.tooth-hotspot .tooth-tip{display:none}.odontogram-note{padding-inline:10px}.clinical-odontogram .legend{gap:8px;font-size:.68rem}}
 html,body,button,input,select,textarea{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+
+/* Mobile dashboard drawer */
+.side-backdrop{display:none}
+@media(max-width:780px){
+  body.side-open{overflow:hidden}
+  .side{width:min(86vw,320px);z-index:50;padding:calc(18px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));box-shadow:18px 0 55px rgba(0,23,27,.34);will-change:transform}
+  .side.open{transform:translateX(0)}
+  .side-backdrop:not([hidden]){display:block;position:fixed;inset:0;z-index:45;border:0;padding:0;background:rgba(3,25,29,.58);backdrop-filter:blur(2px);animation:drawerFade .2s ease}
+  .side-brand{padding-top:2px}.side-brand img{width:170px}
+  .side nav{gap:5px}.nav-btn{min-height:48px;padding:12px 14px;border-radius:12px;font-size:.95rem}
+  .nav-btn.active{background:linear-gradient(135deg,rgba(24,183,173,.3),rgba(24,183,173,.15));box-shadow:inset 3px 0 0 var(--aqua)}
+  .hamburger{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--teal)}
+  .sys-top{height:68px;padding:0 12px;gap:8px}.workspace{padding-top:90px}
+  .signed-user{display:none}.top-actions{gap:6px}.top-actions .secondary{padding:9px 10px;font-size:.75rem}
+  .table-wrap{-webkit-overflow-scrolling:touch}.dialog{max-height:92svh;overflow:auto}
+}
+@media(max-width:430px){.connection span{display:none}.page-head{gap:15px}.page-head h1{font-size:1.55rem}.page-tools{gap:7px}.primary,.secondary{padding:10px 12px}}
+@keyframes drawerFade{from{opacity:0}to{opacity:1}}
