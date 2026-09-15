@@ -131,15 +131,25 @@
     if(!recordTypes[kind])throw new Error('UNSUPPORTED_RECORD_TYPE');
     return request(`/rest/v1/clinic_records?id=eq.${encodeURIComponent(id)}`,{method:'DELETE',headers:{Prefer:'return=minimal'}});
   }
+  async function deleteRowsById(table,filter=''){
+    while(true){
+      const rows=await request(`/rest/v1/${table}?select=id&limit=500${filter?'&'+filter:''}`);
+      const ids=(rows||[]).map(row=>row.id).filter(Boolean);
+      if(!ids.length)return;
+      for(let index=0;index<ids.length;index+=50){
+        const batch=ids.slice(index,index+50).map(encodeURIComponent).join(',');
+        await request(`/rest/v1/${table}?id=in.(${batch})`,{method:'DELETE',headers:{Prefer:'return=minimal'}});
+      }
+    }
+  }
   async function resetOperationalData(confirmation){
     try{
       return await request('/rest/v1/rpc/reset_oravena_operational_data',{method:'POST',body:JSON.stringify({p_confirmation:confirmation})});
     }catch(error){
       if(!/schema cache|could not find the function|pgrst202/i.test(error.message||''))throw error;
-      await request('/rest/v1/clinic_records?record_type=eq.finance',{method:'DELETE',headers:{Prefer:'return=minimal'}});
-      await request('/rest/v1/clinic_records?record_type=neq.setting',{method:'DELETE',headers:{Prefer:'return=minimal'}});
-      await request('/rest/v1/appointments?id=not.is.null',{method:'DELETE',headers:{Prefer:'return=minimal'}});
-      await request('/rest/v1/patients?id=not.is.null',{method:'DELETE',headers:{Prefer:'return=minimal'}});
+      await deleteRowsById('clinic_records','record_type=neq.setting');
+      await deleteRowsById('appointments');
+      await deleteRowsById('patients');
       return {ok:true,mode:'admin_direct'};
     }
   }
