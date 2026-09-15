@@ -131,6 +131,9 @@
     if(!recordTypes[kind])throw new Error('UNSUPPORTED_RECORD_TYPE');
     return request(`/rest/v1/clinic_records?id=eq.${encodeURIComponent(id)}`,{method:'DELETE',headers:{Prefer:'return=minimal'}});
   }
+  async function resetOperationalData(confirmation){
+    return request('/rest/v1/rpc/reset_oravena_operational_data',{method:'POST',body:JSON.stringify({p_confirmation:confirmation})});
+  }
   async function saveStaffInvitation(data){
     return request('/rest/v1/rpc/upsert_staff_invitation',{method:'POST',body:JSON.stringify({
       p_email:String(data.email||'').trim().toLowerCase(),p_full_name:data.name,
@@ -149,5 +152,5 @@
     }
     return {data,access:null};
   }
-  window.OravenaDB={configured,session,access:()=>read(ACCESS_KEY),request,refreshSession,signIn,signInWithGoogle,completeOAuth,signOut,bookAppointment,loadCore,saveClinicRecord,deleteClinicRecord,saveStaffInvitation,signUpAccount,signUpStaff:signUpAccount};
+  window.OravenaDB={configured,session,access:()=>read(ACCESS_KEY),request,refreshSession,signIn,signInWithGoogle,completeOAuth,signOut,bookAppointment,loadCore,saveClinicRecord,deleteClinicRecord,resetOperationalData,saveStaffInvitation,signUpAccount,signUpStaff:signUpAccount};
 })();
